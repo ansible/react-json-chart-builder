@@ -1,20 +1,12 @@
-import React, {
-  FunctionComponent,
-  useEffect,
-  useRef
-} from 'react';
+import React, { FunctionComponent, useEffect, useRef } from 'react';
 
 interface Props {
-  setWidth: (width: number) => void
-  height: number,
-  children?: React.ReactChildren | React.ReactChild,
+  setWidth: (width: number) => void;
+  height: number;
+  children?: React.ReactNode;
 }
 
-const ResponsiveContainer: FunctionComponent<Props> = ({
-  setWidth,
-  height,
-  children = []
-}) => {
+const ResponsiveContainer: FunctionComponent<Props> = ({ setWidth, height, children = [] }) => {
   const containerRef = useRef<HTMLDivElement>(null);
 
   const handleResize = () => {
@@ -31,16 +23,14 @@ const ResponsiveContainer: FunctionComponent<Props> = ({
 
     return () => {
       window.removeEventListener('resize', handleResize);
-    }
+    };
   }, []);
 
   return (
     <div ref={containerRef}>
-      <div style={{ height }}>
-        {children}
-      </div>
+      <div style={{ height }}>{children}</div>
     </div>
   );
-}
+};
 
 export default ResponsiveContainer;

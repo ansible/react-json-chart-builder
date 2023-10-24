@@ -1,8 +1,5 @@
 import { ChartTooltipProps } from '@patternfly/react-charts';
-import React, {
-  SyntheticEvent,
-  FunctionComponent
-} from 'react';
+import React, { SyntheticEvent, FunctionComponent } from 'react';
 
 export { ChartLabelFormatFunctionNames } from './labelFormat';
 export { ChartAxisFormatFunctionNames } from './axisFormat';
@@ -65,20 +62,20 @@ export type ChartDataComponentFunction = React.ElementType;
  */
 export interface ChartFunctions {
   /** The onClick contains the name: function pairs for the onClick even in the chart.  */
-  onClick?: Record<string, ChartOnClickFunction>
+  onClick?: Record<string, ChartOnClickFunction>;
 
   /** The axisFormat contains the name: function pairs for formatting the axis tick lables.  */
-  axisFormat?: Record<string, ChartAxisFormatFunction>
+  axisFormat?: Record<string, ChartAxisFormatFunction>;
 
   /** The axisFormat contains the name: function pairs for formatting the tooltip and other labels.  */
-  labelFormat?: Record<string, ChartLabelFormatFunction>
+  labelFormat?: Record<string, ChartLabelFormatFunction>;
 
   /** The tooltipComponent contains the name: function pairs for rendereing the tooltip on hover. */
-  tooltipComponent?: Record<string, ChartTooltipComponentFunction>
+  tooltipComponent?: Record<string, ChartTooltipComponentFunction>;
 
   /** The style key contains the name: function pairs for various styling functions. */
-  style?: Record<string, ChartStyleFunction>
+  style?: Record<string, ChartStyleFunction>;
 
   /** The dataComponent contains the name: function pairs for deciding which component to use. */
-  dataComponent?: Record<string, ChartDataComponentFunction>
+  dataComponent?: Record<string, ChartDataComponentFunction>;
 }

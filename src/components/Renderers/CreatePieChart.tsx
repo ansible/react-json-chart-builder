@@ -1,11 +1,6 @@
 import React, { FunctionComponent, useEffect, useState } from 'react';
-import {
-  ChartPie as PFChartPie
-} from '@patternfly/react-charts';
-import {
-  ChartPie,
-  ChartInterface
-} from '../types';
+import { ChartPie as PFChartPie } from '@patternfly/react-charts';
+import { ChartPie, ChartInterface } from '../types';
 import ResponsiveContainer from '../Common/ResponsiveContainer';
 import {
   getInteractiveLegendForSingleSeries as getInteractiveLegend,
@@ -14,25 +9,22 @@ import {
 import { paddingNumberToObject } from '../Common/helpers';
 
 interface Props extends ChartInterface {
-  id: number,
+  id: number;
 }
 
-const CreatePieChart: FunctionComponent<Props> = ({
-  id,
-  schema,
-  dataState
-}) => {
+const CreatePieChart: FunctionComponent<Props> = ({ id, schema, dataState }) => {
   const wrapper = schema.find(({ id: i }) => i === id) as ChartPie;
   const [data] = dataState;
   const [width, setWidth] = useState(0);
-  const [serie, setSerie] = useState([
-    { hidden: true }
-  ] as Record<string, string | number | boolean>[])
+  const [serie, setSerie] = useState([{ hidden: true }] as Record<
+    string,
+    string | number | boolean
+  >[]);
 
   useEffect(() => {
     if (data.series.length > 0) {
       setSerie(
-        data.series[0].serie.map(el => ({
+        data.series[0].serie.map((el) => ({
           ...el,
           hidden: false
         }))
@@ -44,19 +36,19 @@ const CreatePieChart: FunctionComponent<Props> = ({
     height: 300,
     y: 'y',
     ...wrapper?.props,
-    ...wrapper?.props?.padding
+    ...(wrapper?.props?.padding
       ? { padding: paddingNumberToObject(wrapper.props.padding) }
       : {
-        padding: {
-          bottom: 70,
-          left: 70,
-          right: 50,
-          top: 50
-        }
-      }
-  }
+          padding: {
+            bottom: 70,
+            left: 70,
+            right: 50,
+            top: 50
+          }
+        })
+  };
 
-  let legendProps = getLegendProps(wrapper, data, props.padding)
+  let legendProps = getLegendProps(wrapper, data, props.padding);
   if (wrapper.legend?.interactive) {
     legendProps = {
       ...legendProps,
@@ -66,22 +58,17 @@ const CreatePieChart: FunctionComponent<Props> = ({
   }
 
   return (
-    <ResponsiveContainer
-      setWidth={setWidth}
-      height={props.height}
-    >
-      {data.series.length > 0 && <PFChartPie
-        constrainToVisibleArea={true}
-        {...props}
-        {...legendProps}
-        data={serie.map(el =>
-          el.hidden
-            ? ({...el, [props.y as string]: 0})
-            : ({...el})
-        )}
-        name={data.series[0].name}
-        width={width}
-      />}
+    <ResponsiveContainer setWidth={setWidth} height={props.height}>
+      {data.series.length > 0 && (
+        <PFChartPie
+          constrainToVisibleArea={true}
+          {...props}
+          {...legendProps}
+          data={serie.map((el) => (el.hidden ? { ...el, [props.y as string]: 0 } : { ...el }))}
+          name={data.series[0].name}
+          width={width}
+        />
+      )}
     </ResponsiveContainer>
   );
 };

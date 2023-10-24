@@ -1,12 +1,3 @@
-import React, { RefObject, useEffect, useState } from 'react';
-import ChartRenderer, {
-  ChartData,
-  ChartFunctions,
-  ChartSchemaElement,
-  functions as defaultFunctions
-} from '../../../src';
-import getPreset from '../schemas';
-import { PresetName } from '../schemas/types';
 import {
   Card,
   CardBody,
@@ -18,20 +9,29 @@ import {
   StackItem,
   Tab,
   TabContent,
-  Tabs,
-  TabTitleText
+  TabTitleText,
+  Tabs
 } from '@patternfly/react-core';
-import CodeBlock from '../Components/CodeBlock';
-import { mergeDeep, prettyPrint, printFunctions } from '../helpers';
-import SchemaEditor from '../Components/SchemaEditor';
+import React, { RefObject, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import ChartRenderer, {
+  ChartData,
+  ChartFunctions,
+  ChartSchemaElement,
+  functions as defaultFunctions
+} from '../../../src';
+import CodeBlock from '../Components/CodeBlock';
+import SchemaEditor from '../Components/SchemaEditor';
+import { mergeDeep, prettyPrint, printFunctions } from '../helpers';
+import getPreset from '../schemas';
+import { PresetName } from '../schemas/types';
 
-interface Params {
+interface IParams {
   slug: PresetName;
 }
 
 const Show: React.FunctionComponent<Record<string, never>> = () => {
-  const { slug } = useParams() as Params;
+  const { slug } = useParams() as unknown as IParams;
   const [preset, setPreset] = useState(getPreset(slug));
   const [schema, setSchema] = useState<ChartSchemaElement[]>([]);
   const [data, setData] = useState<ChartData>(null);
@@ -50,7 +50,7 @@ const Show: React.FunctionComponent<Record<string, never>> = () => {
   useEffect(() => {
     setSchema(preset.schema);
     setData(preset.data);
-    setFunctions(preset?.functions ?? {})
+    setFunctions(preset?.functions ?? {});
   }, [preset]);
 
   useEffect(() => {
@@ -67,7 +67,11 @@ const Show: React.FunctionComponent<Record<string, never>> = () => {
       <CardBody>
         <Stack hasGutter>
           <StackItem>
-            {preset.tags.map(tag => (<Label style={{ margin: '0 10px 0 0' }} key={tag}>{tag}</Label>))}
+            {preset.tags.map((tag) => (
+              <Label style={{ margin: '0 10px 0 0' }} key={tag}>
+                {tag}
+              </Label>
+            ))}
           </StackItem>
           <StackItem>{preset.description}</StackItem>
           <StackItem>
@@ -91,28 +95,46 @@ const Show: React.FunctionComponent<Record<string, never>> = () => {
             eventKey={1}
             title={<TabTitleText>Data</TabTitleText>}
             tabContentId="refTab2Section"
-            tabContentRef={contentRef2} />
+            tabContentRef={contentRef2}
+          />
           <Tab
             eventKey={4}
             title={<TabTitleText>Additional functions</TabTitleText>}
             tabContentId="refTab4Section"
-            tabContentRef={contentRef4} />
+            tabContentRef={contentRef4}
+          />
           <Tab
             eventKey={3}
             title={<TabTitleText>Default functions (compiled)</TabTitleText>}
             tabContentId="refTab3Section"
-            tabContentRef={contentRef3} />
+            tabContentRef={contentRef3}
+          />
         </Tabs>
         <TabContent eventKey={0} id="refTab1Section" ref={contentRef1} aria-label="Schema">
-          <SchemaEditor code={prettyPrint(schema)} setCode={(code) => setSchema(JSON.parse(code))} />
+          <SchemaEditor
+            code={prettyPrint(schema)}
+            setCode={(code) => setSchema(JSON.parse(code))}
+          />
         </TabContent>
         <TabContent eventKey={1} id="refTab2Section" ref={contentRef2} aria-label="Data" hidden>
           <CodeBlock code={prettyPrint(data)} />
         </TabContent>
-        <TabContent eventKey={2} id="refTab3Section" ref={contentRef3} aria-label="Default functions" hidden>
+        <TabContent
+          eventKey={2}
+          id="refTab3Section"
+          ref={contentRef3}
+          aria-label="Default functions"
+          hidden
+        >
           <CodeBlock code={printFunctions(defaultFunctions)} />
         </TabContent>
-        <TabContent eventKey={3} id="refTab4Section" ref={contentRef4} aria-label="Additional functions" hidden>
+        <TabContent
+          eventKey={3}
+          id="refTab4Section"
+          ref={contentRef4}
+          aria-label="Additional functions"
+          hidden
+        >
           <CodeBlock code={printFunctions(functions)} />
         </TabContent>
       </CardFooter>

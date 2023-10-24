@@ -1,10 +1,5 @@
 import React, { FunctionComponent } from 'react';
-import {
-  ChartKind,
-  ChartInterface,
-  ChartTopLevelType,
-  ChartTopSchemaElement
-} from './types';
+import { ChartKind, ChartInterface, ChartTopLevelType, ChartTopSchemaElement } from './types';
 import CreateWrapper from './Renderers/CreateWrapper';
 import CreatePieChart from './Renderers/CreatePieChart';
 import { replaceStringsWithFunctions } from './Common/stylePreprocess';
@@ -25,19 +20,19 @@ const ChartRenderer: FunctionComponent<ChartInterface> = (props) => {
   const newProps = {
     ...props,
     schema
-  }
+  };
 
   const chart = schema.find(
     ({ kind, parent }) => kind === ChartKind.wrapper && parent === null
   ) as ChartTopSchemaElement;
 
   if (chart.type === ChartTopLevelType.chart) {
-    return (<CreateWrapper key={chart.id + Math.random()} id={chart.id} {...newProps} />);
+    return <CreateWrapper key={chart.id + Math.random()} id={chart.id} {...newProps} />;
   } else if (chart.type === ChartTopLevelType.pie) {
-    return (<CreatePieChart key={chart.id + Math.random()} id={chart.id} {...newProps} />);
+    return <CreatePieChart key={chart.id + Math.random()} id={chart.id} {...newProps} />;
   } else {
     return null;
   }
-}
+};
 
 export default ChartRenderer;

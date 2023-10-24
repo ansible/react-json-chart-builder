@@ -9,7 +9,7 @@ export enum PresetName {
   DYNAMIC_SCATTER = 'dynamic-scatter',
   LEGEND_LIKE_TOOLTIP = 'legend-like-tooltip',
   COMPLEX = 'complex-chart',
-  CUSTOM_POINTS = 'custom-points',
+  CUSTOM_POINTS = 'custom-points'
 }
 
 export interface Preset {

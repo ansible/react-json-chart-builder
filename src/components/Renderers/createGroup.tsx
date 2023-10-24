@@ -14,40 +14,46 @@ import createChart from './createChart';
 import createStack from './createStack';
 import { getBarWidthFromData } from '../Common/helpers';
 
-const components: Partial<Record<ChartKind, (
-  id: number,
-  data: ChartInterface,
-  resolvedApi: ChartData
-) => React.ReactElement>> = {
+const components: Partial<
+  Record<
+    ChartKind,
+    (id: number, data: ChartInterface, resolvedApi: ChartData) => React.ReactElement
+  >
+> = {
   [ChartKind.simple]: createChart,
   [ChartKind.stack]: createStack
 };
 
 const createDynamicChildren = ({
-  template, parent, data, width
+  template,
+  parent,
+  data,
+  width
 }: {
-  template: ChartSimple,
-  parent: number,
-  data: ChartDataSerie[],
-  width: number
-}): ChartSchemaElement[] => ([
+  template: ChartSimple;
+  parent: number;
+  data: ChartDataSerie[];
+  width: number;
+}): ChartSchemaElement[] => [
   ...data.map((_d, idx) => ({
     ...template,
     id: idx,
     parent,
     props: {
-      ...template.type === ChartType.bar && { barWidth: getBarWidthFromData(data, width) },
+      ...(template.type === ChartType.bar && {
+        barWidth: getBarWidthFromData(data, width)
+      }),
       ...template.props
     }
   }))
-]);
+];
 
 const getTemplateChart = ({
   templateId,
   charts
 }: {
-  templateId: number,
-  charts: ChartSchemaElement[]
+  templateId: number;
+  charts: ChartSchemaElement[];
 }) => charts.find(({ id }) => id === templateId) as ChartSimple;
 
 const createGroup = (
@@ -56,12 +62,15 @@ const createGroup = (
   resolvedApi: ChartData,
   width: number
 ): React.ReactElement => {
-  const { schema: charts } =  data;
+  const { schema: charts } = data;
   const group = charts.find(({ id: i }) => i === id) as ChartGroup;
   let children = charts.filter(({ parent }) => parent === id);
 
   let renderedChildren: React.ReactElement[] = [];
-  const templateChart = getTemplateChart({ templateId: group.template, charts });
+  const templateChart = getTemplateChart({
+    templateId: group.template,
+    charts
+  });
   if (templateChart) {
     children = createDynamicChildren({
       template: templateChart,
@@ -74,21 +83,22 @@ const createGroup = (
         child.id,
         { ...data, schema: [child] },
         { series: [resolvedApi.series[idx]] }
-      ));
+      )
+    );
   } else {
-    renderedChildren = children.map(child => components[child.kind](child.id, data, resolvedApi));
+    renderedChildren = children.map((child) => components[child.kind](child.id, data, resolvedApi));
   }
 
   return (
     <PFChartGroup
       key={id}
-      {...templateChart
-                && templateChart.type === ChartType.bar
-                && { offset: getBarWidthFromData(resolvedApi.series, width) }
-      }
+      {...(templateChart &&
+        templateChart.type === ChartType.bar && {
+          offset: getBarWidthFromData(resolvedApi.series, width)
+        })}
       {...group?.props}
     >
-      { renderedChildren }
+      {renderedChildren}
     </PFChartGroup>
   );
 };
