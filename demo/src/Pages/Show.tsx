@@ -10,21 +10,21 @@ import {
   Tab,
   TabContent,
   TabTitleText,
-  Tabs,
-} from "@patternfly/react-core";
-import React, { RefObject, useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+  Tabs
+} from '@patternfly/react-core';
+import React, { RefObject, useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import ChartRenderer, {
   ChartData,
   ChartFunctions,
   ChartSchemaElement,
-  functions as defaultFunctions,
-} from "../../../src";
-import CodeBlock from "../Components/CodeBlock";
-import SchemaEditor from "../Components/SchemaEditor";
-import { mergeDeep, prettyPrint, printFunctions } from "../helpers";
-import getPreset from "../schemas";
-import { PresetName } from "../schemas/types";
+  functions as defaultFunctions
+} from '../../../src';
+import CodeBlock from '../Components/CodeBlock';
+import SchemaEditor from '../Components/SchemaEditor';
+import { mergeDeep, prettyPrint, printFunctions } from '../helpers';
+import getPreset from '../schemas';
+import { PresetName } from '../schemas/types';
 
 interface IParams {
   slug: PresetName;
@@ -60,7 +60,7 @@ const Show: React.FunctionComponent<Record<string, never>> = () => {
   if (schema.length < 1 || !data) return null;
 
   return (
-    <Card style={{ maxWidth: "1100px", margin: "auto" }}>
+    <Card style={{ maxWidth: '1100px', margin: 'auto' }}>
       <CardHeader>
         <CardTitle>{preset.title}</CardTitle>
       </CardHeader>
@@ -68,7 +68,7 @@ const Show: React.FunctionComponent<Record<string, never>> = () => {
         <Stack hasGutter>
           <StackItem>
             {preset.tags.map((tag) => (
-              <Label style={{ margin: "0 10px 0 0" }} key={tag}>
+              <Label style={{ margin: '0 10px 0 0' }} key={tag}>
                 {tag}
               </Label>
             ))}
