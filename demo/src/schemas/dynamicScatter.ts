@@ -1,15 +1,10 @@
 import { PresetName, Tag } from './types';
-import {
-  ChartKind,
-  ChartSchemaElement,
-  ChartTopLevelType,
-  ChartType
-} from '../../../src';
+import { ChartKind, ChartSchemaElement, ChartTopLevelType, ChartType } from '../../../src';
 
 const data = {
-  'series': [
+  series: [
     {
-      'serie': [
+      serie: [
         {
           organization: 'org_1',
           template: 'template_1',
@@ -59,19 +54,20 @@ const data = {
 
 const functions = {
   labelFormat: {
-    customValues: ({ datum: { organization, template, score} }: {
+    customValues: ({
+      datum: { organization, template, score }
+    }: {
       datum: {
         organization: string;
         template: string;
         score: number;
-      }
-    }): string =>
-      `Organization: ${organization}\nTemplate: ${template}\nScore: ${score}`
+      };
+    }): string => `Organization: ${organization}\nTemplate: ${template}\nScore: ${score}`
   },
   style: {
     // eslint-disable-next-line max-len
     // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types, @typescript-eslint/no-unsafe-member-access
-    colorFiller: ({ datum }) => datum.score > 3 ? '#000000' : '#c43a31'
+    colorFiller: ({ datum }) => (datum.score > 3 ? '#000000' : '#c43a31')
   }
 };
 
@@ -123,7 +119,8 @@ const schema: ChartSchemaElement[] = [
   }
 ];
 
-const description = 'The example of the scatter chart shows how to create a heatmap/grid styled\
+const description =
+  'The example of the scatter chart shows how to create a heatmap/grid styled\
   scatter chart. Main features are the hidden ticks on the x axis, the format of the data to render\
   a grid and the custom function passed and used in the tooltip labels.';
 
@@ -131,12 +128,7 @@ export default {
   slug: PresetName.DYNAMIC_SCATTER,
   title: 'Grid like scatter chart',
   description,
-  tags: [
-    Tag.axis,
-    Tag.styled,
-    Tag.standaloneTooltip,
-    Tag.tooltip
-  ],
+  tags: [Tag.axis, Tag.styled, Tag.standaloneTooltip, Tag.tooltip],
   schema,
   data,
   functions

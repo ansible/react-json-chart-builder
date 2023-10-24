@@ -2,9 +2,9 @@ name: Lint & Tests
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
   pull_request:
-    branches: [ main ]
+    branches: [main]
 
 jobs:
   lint:
@@ -20,7 +20,6 @@ jobs:
 
       - name: Check the code with linter
         run: npm run lint
-
 
   jest-tests:
     runs-on: ubuntu-latest

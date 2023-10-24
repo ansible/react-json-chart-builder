@@ -9,14 +9,13 @@ export enum ChartAxisFormatFunctionNames {
 
 const returnSame = (i: string | number): string => i.toString();
 
-const formatDateAsDays = (i: string): string =>
-  (i && i.split('-')[2]);
+const formatDateAsDays = (i: string): string => i && i.split('-')[2];
 
 const formatDateAsDayMonth = (i: string): string => {
   if (!i) return '';
   const parts = i.split('-');
   return `${parts[1]}/${parts[2]}`;
-}
+};
 
 const formatNumberAsK = (n: string | number = 0): string => {
   const digits = 3;
@@ -36,8 +35,10 @@ const formatNumberAsK = (n: string | number = 0): string => {
 
   const output = +n / divisor;
   const remainLen = digits - `${output.toFixed(0)}`.length + (output > 0 ? 0 : 1);
-  return (output % 1 === 0) ? `${output}${suffix}` : `${output.toFixed(remainLen > 0 ? remainLen : 0)}${suffix}`
-}
+  return output % 1 === 0
+    ? `${output}${suffix}`
+    : `${output.toFixed(remainLen > 0 ? remainLen : 0)}${suffix}`;
+};
 
 const axisFormat: Record<string, ChartAxisFormatFunction> = {
   [ChartAxisFormatFunctionNames.default]: returnSame,

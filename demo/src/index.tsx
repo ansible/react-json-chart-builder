@@ -10,7 +10,4 @@ const RootApp: React.FC<Record<string, never>> = () => (
   </Router>
 );
 
-ReactDOM.render(
-  <RootApp />,
-  document.getElementById('root')
-);
+ReactDOM.render(<RootApp />, document.getElementById('root'));

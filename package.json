@@ -36,6 +36,8 @@
     "build:cjs": "tsc -p tsconfig.cjs.json",
     "lint": "eslint ./src/**/*.{ts,tsx} ./demo/src/**/*.{ts,tsx}",
     "lint:fix": "eslint ./src/**/*.{ts,tsx} ./demo/src/**/*.{ts,tsx} --fix",
+    "prettier": "npx prettier --check .",
+    "prettier:fix": "npx prettier --write .",
     "prepublishOnly": "npm run lint",
     "prepare": "rm -rf dist && npm run build"
   },

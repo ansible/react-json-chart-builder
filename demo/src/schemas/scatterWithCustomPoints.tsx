@@ -1,58 +1,53 @@
 import { PresetName, Tag } from './types';
-import {
-  ChartKind,
-  ChartSchemaElement,
-  ChartTopLevelType,
-  ChartType
-} from '../../../src';
+import { ChartKind, ChartSchemaElement, ChartTopLevelType, ChartType } from '../../../src';
 import React, { FC } from 'react';
 
 const data = {
-  'series': [
+  series: [
     {
-      'serie': [
+      serie: [
         {
-          'failed_count': 24,
-          'failed_anomaly': 7,
-          'created_date': '2020-11-04'
+          failed_count: 24,
+          failed_anomaly: 7,
+          created_date: '2020-11-04'
         },
         {
-          'failed_count': 24,
-          'failed_anomaly': 3,
-          'created_date': '2020-11-05'
+          failed_count: 24,
+          failed_anomaly: 3,
+          created_date: '2020-11-05'
         },
         {
-          'failed_count': 24,
-          'failed_anomaly': 8,
-          'created_date': '2020-11-06'
+          failed_count: 24,
+          failed_anomaly: 8,
+          created_date: '2020-11-06'
         },
         {
-          'failed_count': 11,
-          'failed_anomaly': 11,
-          'created_date': '2020-11-07'
+          failed_count: 11,
+          failed_anomaly: 11,
+          created_date: '2020-11-07'
         },
         {
-          'failed_count': 24,
-          'failed_anomaly': 7,
-          'created_date': '2020-11-08'
+          failed_count: 24,
+          failed_anomaly: 7,
+          created_date: '2020-11-08'
         },
         {
-          'failed_count': 24,
-          'failed_anomaly': 5,
-          'created_date': '2020-11-09'
+          failed_count: 24,
+          failed_anomaly: 5,
+          created_date: '2020-11-09'
         },
         {
-          'failed_count': 24,
-          'failed_anomaly': 1,
-          'created_date': '2020-11-10'
+          failed_count: 24,
+          failed_anomaly: 1,
+          created_date: '2020-11-10'
         }
       ],
-      'hidden': false,
-      'name': '83386767-e37a-4186-8436-22a85a270596'
+      hidden: false,
+      name: '83386767-e37a-4186-8436-22a85a270596'
     }
   ],
-  'legend': []
-}
+  legend: []
+};
 
 const schema: ChartSchemaElement[] = [
   {
@@ -107,16 +102,21 @@ const CustomPoint: FC<Props> = ({ x, y, disableInlineStyles, ...props }) => {
   // the component can be centered here if needed
   // it's advised to pass props.events to make sure all events are passed to the component
   // if not bug like missing tooltip will happen
-  return <text x={x} y={y} {...props} {...props.events}>:-)</text>;
+  return (
+    <text x={x} y={y} {...props} {...props.events}>
+      :-)
+    </text>
+  );
 };
 
 const functions = {
   dataComponent: {
-    'scatterPlot': CustomPoint
+    scatterPlot: CustomPoint
   }
 };
 
-const description = 'The example of scatter chart with custom points shows how to replace \
+const description =
+  'The example of scatter chart with custom points shows how to replace \
     a default points with a custom component. It also shows how to handle color change from default.';
 
 export default {

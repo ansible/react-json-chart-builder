@@ -110,24 +110,13 @@ const Show: React.FunctionComponent<Record<string, never>> = () => {
             tabContentRef={contentRef3}
           />
         </Tabs>
-        <TabContent
-          eventKey={0}
-          id="refTab1Section"
-          ref={contentRef1}
-          aria-label="Schema"
-        >
+        <TabContent eventKey={0} id="refTab1Section" ref={contentRef1} aria-label="Schema">
           <SchemaEditor
             code={prettyPrint(schema)}
             setCode={(code) => setSchema(JSON.parse(code))}
           />
         </TabContent>
-        <TabContent
-          eventKey={1}
-          id="refTab2Section"
-          ref={contentRef2}
-          aria-label="Data"
-          hidden
-        >
+        <TabContent eventKey={1} id="refTab2Section" ref={contentRef2} aria-label="Data" hidden>
           <CodeBlock code={prettyPrint(data)} />
         </TabContent>
         <TabContent

@@ -21,13 +21,23 @@ export * from './Functions/types';
  * The padding props requires all fields to be defined, so the library does not
  * have to worry about the missing fields.
  */
-export interface PaddingProps { top: number, bottom: number, left: number, right: number }
+export interface PaddingProps {
+  top: number;
+  bottom: number;
+  left: number;
+  right: number;
+}
 
 /**
  * The user facing padding props defines padding on four sides of the element.
  * The missing fields are filled in the appcilation early on.
  */
-export interface PaddingPropsOptional { top?: number, bottom?: number, left?: number, right?: number }
+export interface PaddingPropsOptional {
+  top?: number;
+  bottom?: number;
+  left?: number;
+  right?: number;
+}
 
 /**
  * This enum defines the possible chart kinds, which are used to compose the hierarchy of
@@ -71,7 +81,7 @@ export interface ChartDataSerie {
    * The data for the serie. This is an array of objects, where each object
    * represents one data point.
    */
-  serie: Record<string, string | number>[],
+  serie: Record<string, string | number>[];
 
   /**
    * The hidden prop defines if the serie is currently visible in the chart.
@@ -81,13 +91,13 @@ export interface ChartDataSerie {
    *
    * @see ChartLegendProps
    */
-  hidden: boolean,
+  hidden: boolean;
 
   /**
    * Unique name for the series. This name is used internally do differenciate
    * and reference the series.
    */
-  name: string
+  name: string;
 }
 
 /**
@@ -97,7 +107,7 @@ export interface ChartLegendEntry {
   /**
    * The name prop defines the displayed name for the entry.
    */
-  name: string,
+  name: string;
 
   /**
    * The childName prop defines the name of the connected serie.
@@ -107,7 +117,7 @@ export interface ChartLegendEntry {
    * @see ChartLegendProps
    * @see ChartDataSerie
    */
-  childName?: string,
+  childName?: string;
 
   /**
    * The tooltipText prop defines the tooltip when hoverin over the legend
@@ -117,13 +127,13 @@ export interface ChartLegendEntry {
    * Otherwise the name could be too long to display and the users will
    * have no way to read it in the whole length.
    */
-  tooltipText?: string,
+  tooltipText?: string;
 
   /**
    * The rest prop is used to pass any other props to the legend entry.
    * This prop will not overwrite the custom functionality added by the library.
    */
-  [key: string]: string | number
+  [key: string]: string | number;
 }
 
 /**
@@ -135,13 +145,13 @@ export interface ChartData {
    *
    * @see ChartDataSerie
    */
-  series: ChartDataSerie[],
+  series: ChartDataSerie[];
 
   /**
    * The legend prop should contain all the legend entries for the chart.
    * The order of the array does matter, as it will be displated in that same order.
    */
-  legend?: ChartLegendEntry[]
+  legend?: ChartLegendEntry[];
 }
 
 interface ChartBase {
@@ -149,18 +159,18 @@ interface ChartBase {
    * The id props specifies the *unique* id for the given element in the schema.
    * Used in the library to reference the element in the schema.
    */
-  id: number,
+  id: number;
 
   /**
    * The kind prop specifies what part of the chart is the element.
    */
-  kind: ChartKind,
+  kind: ChartKind;
 
   /**
    * The parent prop specifies which element is the parent for the
    * current element. In case of `null` the element is top level element.
    */
-  parent: number
+  parent: number;
 }
 
 export interface ChartTooltipProps {
@@ -173,13 +183,13 @@ export interface ChartTooltipProps {
    * @see ChartTooltipComponentFunction
    * @see ChartInterface.functions
    */
-  type?: string,
+  type?: string;
 
   /**
    * The props prop is used as the props to the tooltip component.
    * These props are passed dowm to the tooltip component.
    */
-  props?: PFChartTooltipProps,
+  props?: PFChartTooltipProps;
 
   /**
    * The standalone prop defines if the tooltip content will be returned for
@@ -188,7 +198,7 @@ export interface ChartTooltipProps {
    *
    * @default false
    */
-  standalone?: boolean,
+  standalone?: boolean;
 
   /**
    * The labelName prop defines the string which will be used to label the value
@@ -198,7 +208,7 @@ export interface ChartTooltipProps {
    * @example `not defined label name` - if the data is `{ foo_bar: 15 }` then the label will be `'Foo bar'`.
    * @example `labelName: 'My value'` - if the data is `{ foo_bar: 15 }` then the label will be `'My value'`.
    */
-  labelName?: string,
+  labelName?: string;
 
   /**
    * The labelFormat prop defines which label format function will be used.
@@ -213,7 +223,7 @@ export interface ChartTooltipProps {
    * @see ChartLabelFormatFunction
    * @see ChartInterface.functions
    */
-  labelFormat?: string
+  labelFormat?: string;
 }
 
 /** The ChartSimpleProps unifying all the possible types fot the simple chart props. */
@@ -221,23 +231,23 @@ export type ChartSimpleProps = ChartBarProps | ChartLineProps | ChartAreaProps |
 
 export interface ChartSimple extends ChartBase {
   /** The kind of the chart. Always `simple`. */
-  kind: ChartKind.simple,
+  kind: ChartKind.simple;
 
   /**
    * The props defined the props that are directly passed to the chart element.
    * The are not owerwriting the extra props that are added by the library.
    */
-  props: ChartSimpleProps,
+  props: ChartSimpleProps;
 
   /**
    * The name prop defines the name by which the chart will be referenced.
    * Usually you want to leave this prop empty, since by default the library
    * fills the name from the data set.
    */
-  name?: string,
+  name?: string;
 
   /** The type prop defines which chart type will be rendered. */
-  type: ChartType,
+  type: ChartType;
 
   /**
    * The tooltip prop if defined creates a tooltip for the chart. All the porps
@@ -246,7 +256,7 @@ export interface ChartSimple extends ChartBase {
    * @example `tooltip: {}` - the chart and the data will show up in tootlip(s).
    * @example `tooltip: { standalone: true }` - the chart will have a standalone tooltip.
    */
-  tooltip?: ChartTooltipProps,
+  tooltip?: ChartTooltipProps;
 
   /**
    * The onClick prop defines which on click function will be used when the data point is clicked.
@@ -258,25 +268,25 @@ export interface ChartSimple extends ChartBase {
    * @see ChartOnClickFunction
    * @see ChartInterface.functions
    */
-  onClick?: string,
+  onClick?: string;
 
   /**
    * The dataComponent prop defines which dataComponent function (that renders specific component)
    * to pass to the Victory chart.
    * The value has to be in the name one of the passed functions in the `functions` list under the `dataComponent` key.
    */
-  dataComponent?: string
+  dataComponent?: string;
 }
 
 export interface ChartGroup extends ChartBase {
   /** The kind of the chart. Always `group`. */
-  kind: ChartKind.group,
+  kind: ChartKind.group;
 
   /**
    * The props defined the props that are directly passed to the chart element.
    * The are not owerwriting the extra props that are added by the library.
    */
-  props?: ChartGroupProps,
+  props?: ChartGroupProps;
 
   /**
    * The template prop references the ID of an element (BaseChart) that will be used as
@@ -286,18 +296,18 @@ export interface ChartGroup extends ChartBase {
    * @see BaseChart
    * @see ChartData
    */
-  template?: number
+  template?: number;
 }
 
 export interface ChartStack extends ChartBase {
   /** The kind of the chart. Always `stack`. */
-  kind: ChartKind.stack,
+  kind: ChartKind.stack;
 
   /**
    * The props defined the props that are directly passed to the chart element.
    * The are not owerwriting the extra props that are added by the library.
    */
-  props?: ChartStackProps
+  props?: ChartStackProps;
 }
 
 export interface ChartAxisProps extends Omit<PFChartAxisProps, 'tickFormat'> {
@@ -311,10 +321,10 @@ export interface ChartAxisProps extends Omit<PFChartAxisProps, 'tickFormat'> {
    * @see ChartTickFormatFunction
    * @see ChartInterface.functions
    */
-  tickFormat?: string,
+  tickFormat?: string;
 
   /** The labelProps is passed to the label component as it is. */
-  labelProps?: ChartLabelProps,
+  labelProps?: ChartLabelProps;
 
   /**
    * The turncateAt prop defines at what length should be the ticks label turncated.
@@ -323,7 +333,7 @@ export interface ChartAxisProps extends Omit<PFChartAxisProps, 'tickFormat'> {
    *
    * @example `turncateAt: 2` - when the label would be `My label` it will be turncated to `My...`.
    */
-  turncateAt?: number,
+  turncateAt?: number;
 
   /**
    * When the wrapText is set to true and the turncateAt is set instead of truncating
@@ -334,7 +344,7 @@ export interface ChartAxisProps extends Omit<PFChartAxisProps, 'tickFormat'> {
    * @example `turncateAt: 2; wrapText: true` - when the label would be `My label` it will bemodified to `My\n label`.
    *
    */
-  wrapText?: boolean
+  wrapText?: boolean;
 }
 
 export interface ChartLegendProps {
@@ -345,13 +355,13 @@ export interface ChartLegendProps {
    *
    * @default false
    */
-  interactive?: boolean,
+  interactive?: boolean;
 
   /** The position prop controlls the position of the legend. */
-  position: 'bottom' | 'right',
+  position: 'bottom' | 'right';
 
   /** The orientation prop defines if the legend is vertical or horizontal. */
-  orientation: 'horizontal' | 'vertical',
+  orientation: 'horizontal' | 'vertical';
 
   /**
    * The turncateAt prop defines at what length should be the ticks label turncated.
@@ -360,7 +370,7 @@ export interface ChartLegendProps {
    *
    * @example `turncateAt: 2` - when the label would be `My label` it will be turncated to `My...`.
    */
-  turncateAt?: number,
+  turncateAt?: number;
 
   /**
    * When the wrapText is set to true and the turncateAt is set instead of truncating
@@ -371,7 +381,7 @@ export interface ChartLegendProps {
    * @example `turncateAt: 2; wrapText: true` - when the label would be `My label` it will bemodified to `My\n label`.
    *
    */
-  wrapText?: boolean,
+  wrapText?: boolean;
 
   /**
    * The hasTooltip defines if the chart legend entries show tooltip when howered.
@@ -380,21 +390,21 @@ export interface ChartLegendProps {
    * @default false
    * @see ChartLegendEntry.tooltipText
    */
-  hasTooltip?: boolean
+  hasTooltip?: boolean;
 }
 
 export interface ChartTopLevelElement extends ChartBase {
   /** The kind for a top level element is always `wrapper`. */
-  kind: ChartKind.wrapper,
+  kind: ChartKind.wrapper;
 
   /** The parent for a top level element is always `null`: no parent. */
-  parent: null,
+  parent: null;
 
   /**
    * The type prop specifies which kind of wrapper/top level element
    * is the element.
    */
-  type: ChartTopLevelType
+  type: ChartTopLevelType;
 }
 
 export interface ChartProps extends Omit<PFChartProps, 'padding'> {
@@ -403,7 +413,7 @@ export interface ChartProps extends Omit<PFChartProps, 'padding'> {
    * is removed. This makes sure that the user knows that each of the sides will have
    * most probably different padding (depending on the axes, labels and legends).
    */
-  padding?: PaddingPropsOptional
+  padding?: PaddingPropsOptional;
 }
 
 export interface ChartPieProps extends Omit<PFChartPieProps, 'padding'> {
@@ -412,7 +422,7 @@ export interface ChartPieProps extends Omit<PFChartPieProps, 'padding'> {
    * is removed. This makes sure that the user knows that each of the sides will have
    * most probably different padding (depending on the axes, labels and legends).
    */
-  padding?: PaddingPropsOptional
+  padding?: PaddingPropsOptional;
 }
 
 export interface ChartWrapperTooltipProps {
@@ -421,14 +431,14 @@ export interface ChartWrapperTooltipProps {
    * If disabled the tooltip is dispayed relative to the data point, when
    * enabled it is displaed relative to the mouse.
    */
-  mouseFollow?: boolean,
+  mouseFollow?: boolean;
 
   /**
    * The stickToAxis prop is ues to stick the tooltip to the axis.
    * When set to 'x' for example the mouse will move a vertical line trough
    * the cart and all the data points on that axis will display in the tooltip.
    */
-  stickToAxis?: 'x' | 'y',
+  stickToAxis?: 'x' | 'y';
 
   /* eslint-disable max-len */
   /**
@@ -440,7 +450,7 @@ export interface ChartWrapperTooltipProps {
    * @default false
    */
   /* eslint-enable max-len */
-  cursor?: boolean,
+  cursor?: boolean;
 
   /**
    * The labelFormat prop defines which label format function will be used.
@@ -451,7 +461,7 @@ export interface ChartWrapperTooltipProps {
    * @see ChartLabelFormatFunction
    * @see ChartInterface.functions
    */
-  labelFormat?: string,
+  labelFormat?: string;
 
   /**
    * The legendTooltip prop enables legend like tooltips.
@@ -472,14 +482,14 @@ export interface ChartWrapperTooltipProps {
      * The legendData prop can specify which data to use for the tooltip.
      * If none given the data from the chart's legend is used.
      */
-    legendData?: ChartLegendTooltipProps['legendData'],
+    legendData?: ChartLegendTooltipProps['legendData'];
 
     /**
      * The titlePropertyForLegend defines which field from the data will be used as
      * the title for the toolptip popup.
      */
-    titleProperyForLegend?: string
-  }
+    titleProperyForLegend?: string;
+  };
 }
 
 export interface ChartWrapper extends ChartTopLevelElement {
@@ -487,34 +497,34 @@ export interface ChartWrapper extends ChartTopLevelElement {
    * The type of the chart.
    * Great for checking the type in the library and type hinting.
    */
-  type: ChartTopLevelType.chart,
+  type: ChartTopLevelType.chart;
 
   /**
    * The props for the chart wrapper. These props can override the default props from PF charts as
    * well as overwriting most of the previous props defined in this library for greater customizability.
    * Overwriting props like `legend*`, `labels` can result in unexpected behavior.
    */
-  props?: ChartProps,
+  props?: ChartProps;
 
   /**
    * The xAxis prop specifies how the chart's x axis should be rendered.
    */
-  xAxis: ChartAxisProps,
+  xAxis: ChartAxisProps;
 
   /**
    * The yAxis prop specifies how the chart's y axis should be rendered.
    */
-  yAxis: ChartAxisProps,
+  yAxis: ChartAxisProps;
 
   /**
    * The legend prop specifies the Legend component for the chart.
    */
-  legend?: ChartLegendProps,
+  legend?: ChartLegendProps;
 
   /**
    * The tooltip prop specifies how the chart's tooltip should be rendered.
    */
-  tooltip?: ChartWrapperTooltipProps
+  tooltip?: ChartWrapperTooltipProps;
 }
 
 export interface ChartPie extends ChartTopLevelElement {
@@ -522,24 +532,24 @@ export interface ChartPie extends ChartTopLevelElement {
    * The type of the chart.
    * Great for checking the type in the library and type hinting.
    */
-  type: ChartTopLevelType.pie,
+  type: ChartTopLevelType.pie;
 
   /**
    * The props for the pie chart. These props can override the default props from PF charts as
    * well as overwriting most of the previous props defined in this library for greater customizability.
    * Overwriting props like `legend*`, `labels` can result in unexpected behavior.
    */
-  props?: ChartPieProps,
+  props?: ChartPieProps;
 
   /**
    * The legend prop specifies the Legend component for the pie chart.
    */
-  legend?: ChartLegendProps,
+  legend?: ChartLegendProps;
 
   /**
    * The tooltip prop specifies how the pie chart's tooltip should be rendered.
    */
-  tooltip?: PFChartTooltipProps
+  tooltip?: PFChartTooltipProps;
 }
 
 /** All the valid elements that can be top level elements in a chart. */
@@ -552,12 +562,12 @@ export interface ChartInterface {
   /**
    * Defines the complete schema for the chart.
    */
-  schema: ChartSchemaElement[],
+  schema: ChartSchemaElement[];
 
   /**
    * Defines all the functions, that the library will use.
    */
-  functions: ChartFunctions,
+  functions: ChartFunctions;
 
   /**
    * A basic react useState() hook return, containing the data.
@@ -566,8 +576,8 @@ export interface ChartInterface {
    * The function can be passed as `() => {}` in cases where the charting library does not needs
    * to update the data.
    */
-  dataState: [ChartData, (data: ChartData) => void]
+  dataState: [ChartData, (data: ChartData) => void];
 }
 
 // Reexport theme color from PF
-export { ChartThemeColor }
+export { ChartThemeColor };

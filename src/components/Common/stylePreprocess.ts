@@ -1,4 +1,4 @@
-import { ChartFunctions, ChartSchemaElement } from '../types'
+import { ChartFunctions, ChartSchemaElement } from '../types';
 
 const replaceStyleFunction = (
   style: Record<string, Record<string, any>>,
@@ -13,16 +13,13 @@ const replaceStyleFunction = (
         }
       }
     });
-  })
+  });
 
   return style;
-}
+};
 
-const recursiveReplace = <T>(
-  item: T,
-  functions: ChartFunctions['style']
-): T => {
-  Object.keys(item).forEach(key => {
+const recursiveReplace = <T>(item: T, functions: ChartFunctions['style']): T => {
+  Object.keys(item).forEach((key) => {
     if (key === 'style') {
       item[key] = replaceStyleFunction(item[key], functions);
     } else if (item[key] && typeof item[key] === 'object') {
@@ -31,18 +28,17 @@ const recursiveReplace = <T>(
     }
   });
   return item;
-}
+};
 
 export const replaceStringsWithFunctions = (
   schema: ChartSchemaElement[],
   functions: ChartFunctions['style']
 ): ChartSchemaElement[] => {
-  if (Object.keys(functions).length < 1)
-    return schema;
+  if (Object.keys(functions).length < 1) return schema;
 
-  const newSchema = schema.map(item => {
+  const newSchema = schema.map((item) => {
     return recursiveReplace(item, functions);
   });
 
   return newSchema;
-}
+};

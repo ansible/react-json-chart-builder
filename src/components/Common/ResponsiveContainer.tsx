@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useEffect, useRef } from "react";
+import React, { FunctionComponent, useEffect, useRef } from 'react';
 
 interface Props {
   setWidth: (width: number) => void;
@@ -6,11 +6,7 @@ interface Props {
   children?: React.ReactNode;
 }
 
-const ResponsiveContainer: FunctionComponent<Props> = ({
-  setWidth,
-  height,
-  children = [],
-}) => {
+const ResponsiveContainer: FunctionComponent<Props> = ({ setWidth, height, children = [] }) => {
   const containerRef = useRef<HTMLDivElement>(null);
 
   const handleResize = () => {
@@ -23,10 +19,10 @@ const ResponsiveContainer: FunctionComponent<Props> = ({
 
   useEffect(() => {
     handleResize();
-    window.addEventListener("resize", handleResize);
+    window.addEventListener('resize', handleResize);
 
     return () => {
-      window.removeEventListener("resize", handleResize);
+      window.removeEventListener('resize', handleResize);
     };
   }, []);
 

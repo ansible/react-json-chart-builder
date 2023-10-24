@@ -7,6 +7,6 @@ export enum ChartTooltipComponentFunctionNames {
 
 const tooltip: Record<string, ChartTooltipComponentFunction> = {
   [ChartTooltipComponentFunctionNames.default]: ChartTooltip
-}
+};
 
 export default tooltip;

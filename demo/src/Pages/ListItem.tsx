@@ -1,4 +1,11 @@
-import { Card, CardBody, CardFooter, CardHeader, CardTitle, Label as PFLabel } from '@patternfly/react-core';
+import {
+  Card,
+  CardBody,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+  Label as PFLabel
+} from '@patternfly/react-core';
 import styled from 'styled-components';
 import React, { FC } from 'react';
 import { Link } from 'react-router-dom';
@@ -30,9 +37,13 @@ const ListItem: FC<Props> = ({ slug }) => {
           <Link to={`/example/${slug}`}>{title}</Link>
         </CardTitle>
       </CardHeader>
-      <CardBody><Small>{description}</Small></CardBody>
+      <CardBody>
+        <Small>{description}</Small>
+      </CardBody>
       <CardFooter>
-        {tags.map(tag => (<Label key={tag}>{tag}</Label>))}
+        {tags.map((tag) => (
+          <Label key={tag}>{tag}</Label>
+        ))}
       </CardFooter>
     </Card>
   );

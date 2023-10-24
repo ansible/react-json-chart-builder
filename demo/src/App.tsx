@@ -8,10 +8,7 @@ import {
   PageSidebar,
   PageSidebarBody
 } from '@patternfly/react-core';
-import {
-  PageHeader,
-  PageHeaderTools
-} from '@patternfly/react-core/deprecated';
+import { PageHeader, PageHeaderTools } from '@patternfly/react-core/deprecated';
 import { List, Show } from './Pages';
 import Navigation from './Navigation';
 import logo from '../public/favicon.png';
@@ -26,7 +23,7 @@ const App: FC<Record<string, never>> = () => {
     <PageHeaderTools
       children={
         <Button onClick={() => jumpToDocs()} variant={ButtonVariant.primary}>
-            Jump to docs
+          Jump to docs
         </Button>
       }
     />
@@ -34,23 +31,24 @@ const App: FC<Record<string, never>> = () => {
 
   const Header = (
     <PageHeader
-      logo={(
+      logo={
         <>
           {/* eslint-disable-next-line @typescript-eslint/no-unsafe-assignment */}
           <img src={logo} width="30px" alt="Logo" />
           <p style={{ marginLeft: '10px', color: 'white' }}>Chart builder demo</p>
         </>
-      )}
+      }
       headerTools={headerToolbar}
       showNavToggle
     />
   );
   const Sidebar = (
-    <PageSidebar  >
+    <PageSidebar>
       <PageSidebarBody>
         <Navigation />
       </PageSidebarBody>
-    </PageSidebar>);
+    </PageSidebar>
+  );
 
   return (
     <Page header={Header} isManagedSidebar sidebar={Sidebar} style={{ minHeight: '100vh' }}>

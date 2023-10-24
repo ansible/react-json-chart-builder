@@ -13,8 +13,8 @@ export const printFunctions = (f: ChartFunctions): string => {
 };
 
 const isObject = (item) => {
-  return (item && typeof item === 'object' && !Array.isArray(item));
-}
+  return item && typeof item === 'object' && !Array.isArray(item);
+};
 
 export const mergeDeep = <T>(target: T, ...sources: T[]): T => {
   if (!sources.length) return target;
@@ -23,9 +23,10 @@ export const mergeDeep = <T>(target: T, ...sources: T[]): T => {
   if (isObject(target) && isObject(source)) {
     for (const key in source) {
       if (isObject(source[key])) {
-        if (!target[key]) Object.assign(target, {
-          [key]: {}
-        });
+        if (!target[key])
+          Object.assign(target, {
+            [key]: {}
+          });
         mergeDeep(target[key], source[key]);
       } else {
         Object.assign(target, {

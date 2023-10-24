@@ -2,18 +2,18 @@ import {
   ChartLabel,
   ChartLegend,
   ChartLabelProps as PFChartLabelProps,
-  getInteractiveLegendItemStyles,
-} from "@patternfly/react-charts";
-import { Tooltip } from "@patternfly/react-core";
-import React from "react";
+  getInteractiveLegendItemStyles
+} from '@patternfly/react-charts';
+import { Tooltip } from '@patternfly/react-core';
+import React from 'react';
 import {
   ChartData,
   ChartLegendEntry,
   ChartPie,
   ChartTopSchemaElement,
-  PaddingProps,
-} from "../types";
-import { turncateAt, wrapAt } from "./helpers";
+  PaddingProps
+} from '../types';
+import { turncateAt, wrapAt } from './helpers';
 
 export type LegendComponentType = React.ReactElement<typeof ChartLegend>;
 interface LegendTooltipProps extends PFChartLabelProps {
@@ -23,9 +23,7 @@ interface LegendTooltipProps extends PFChartLabelProps {
 const LegendWithTooltip = ({ datum, ...rest }: LegendTooltipProps) => (
   <Tooltip
     content={datum.tooltipText as string}
-    triggerRef={() =>
-      document.getElementById((rest as { text: string }).text.toString())
-    }
+    triggerRef={() => document.getElementById((rest as { text: string }).text.toString())}
     enableFlip
   >
     <ChartLabel {...rest} id={(rest as { text: string }).text.toString()} />
@@ -35,15 +33,12 @@ const LegendWithTooltip = ({ datum, ...rest }: LegendTooltipProps) => (
 const getLegendName = ({
   name,
   turncateAtNumber,
-  wrapText,
+  wrapText
 }: {
   name: string;
   turncateAtNumber?: number;
   wrapText?: boolean;
-}) =>
-  wrapText
-    ? wrapAt(name, turncateAtNumber)
-    : turncateAt(name, turncateAtNumber);
+}) => (wrapText ? wrapAt(name, turncateAtNumber) : turncateAt(name, turncateAtNumber));
 
 const getChartLegend = (
   id: number,
@@ -60,28 +55,28 @@ const getChartLegend = (
       tooltipText: el.name, // This one is overwritable
       ...el,
       name: getLegendName({ name: el.name, turncateAtNumber, wrapText }),
-      ...getInteractiveLegendItemStyles(isHidden(index)),
+      ...getInteractiveLegendItemStyles(isHidden(index))
     }))}
     style={{
       labels: {
-        cursor: "pointer",
-      },
+        cursor: 'pointer'
+      }
     }}
     events={[
       {
-        target: "labels",
+        target: 'labels',
         eventHandlers: {
           onClick: () => [
             {
-              target: "data",
+              target: 'data',
               mutation: (props) => {
                 handleClick(props);
                 return null;
-              },
-            },
-          ],
-        },
-      },
+              }
+            }
+          ]
+        }
+      }
     ]}
     labelComponent={hasTooltip ? <LegendWithTooltip /> : <ChartLabel />}
   />
@@ -95,10 +90,7 @@ export const getInteractiveLegendForMultiSeries = (
   const handleClick = ({ index }: { index: number }) => {
     // Don't allow hiding ALL the series
     const hiddenCount = chartData.series.filter(({ hidden }) => hidden).length;
-    if (
-      !chartData.series[index].hidden &&
-      chartData.series.length === hiddenCount + 1
-    ) {
+    if (!chartData.series[index].hidden && chartData.series.length === hiddenCount + 1) {
       return;
     }
 
@@ -107,7 +99,7 @@ export const getInteractiveLegendForMultiSeries = (
     tempData[index].hidden = !tempData[index].hidden;
     setData({
       ...chartData,
-      series: tempData,
+      series: tempData
     });
   };
 
@@ -163,8 +155,8 @@ export const getInteractiveLegendForSingleSeries = (
 interface LegendProps {
   padding?: { top: number; bottom: number; left: number; right: number };
   legendData?: ChartLegendEntry[];
-  legendPosition?: "bottom" | "right";
-  legendOrientation?: "horizontal" | "vertical";
+  legendPosition?: 'bottom' | 'right';
+  legendOrientation?: 'horizontal' | 'vertical';
   legendComponent?: LegendComponentType;
   domainPadding?: number;
 }
@@ -175,16 +167,16 @@ export const getLegendProps = (
   originalPadding: PaddingProps
 ): LegendProps => {
   let props: LegendProps = {
-    padding: originalPadding,
+    padding: originalPadding
   };
 
   if (element.legend) {
     const { legend } = element;
-    if (legend.position === "bottom" || legend.position === "right") {
+    if (legend.position === 'bottom' || legend.position === 'right') {
       props.padding[legend.position] += 100;
     }
 
-    if (legend.position === "bottom") {
+    if (legend.position === 'bottom') {
       element.props.height += 100;
     }
 
@@ -197,9 +189,9 @@ export const getLegendProps = (
         name: getLegendName({
           name: el.name,
           turncateAtNumber: element?.legend?.turncateAt ?? Infinity,
-          wrapText: element?.legend?.wrapText,
-        }),
-      })),
+          wrapText: element?.legend?.wrapText
+        })
+      }))
     };
   }
 
