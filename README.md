@@ -6,7 +6,7 @@
 
 ## Intall the npm package
 
-- `npm i --save react-json-chart-builder`
+- `npm i --save @ansible/react-json-chart-builder`
 
 ## Workflow
 
