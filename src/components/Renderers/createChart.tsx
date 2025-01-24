@@ -1,5 +1,5 @@
 import React from 'react';
-import { ChartBar, ChartLine, ChartArea, ChartScatter } from '@patternfly/react-charts';
+import { ChartBar, ChartLine, ChartArea, ChartScatter } from '@patternfly/react-charts/victory';
 import {
   ChartData,
   ChartDataSerie,

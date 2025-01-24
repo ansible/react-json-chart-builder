@@ -6,7 +6,7 @@ import {
   ChartLegendTooltip,
   ChartVoronoiContainer,
   createContainer
-} from '@patternfly/react-charts';
+} from '@patternfly/react-charts/victory';
 import {
   ChartData,
   ChartDataSerie,
@@ -156,7 +156,7 @@ const CreateWrapper: FunctionComponent<Props> = ({ id, schema, functions, dataSt
   if (wrapper.tooltip) {
     const tooltip = wrapper.tooltip;
     // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-    const ContainerComponent = tooltip.cursor
+    const ContainerComponent: any = tooltip.cursor
       ? createContainer('voronoi', 'cursor')
       : ChartVoronoiContainer;
 

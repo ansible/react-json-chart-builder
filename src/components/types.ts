@@ -12,7 +12,7 @@ import {
   ChartAxisProps as PFChartAxisProps,
   ChartLabelProps,
   ChartLegendTooltipProps
-} from '@patternfly/react-charts';
+} from '@patternfly/react-charts/victory';
 import { ChartFunctions } from './Functions/types';
 export * from './Functions/types';
 

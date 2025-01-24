@@ -42,17 +42,18 @@
     "prepare": "rm -rf dist && npm run build"
   },
   "peerDependencies": {
-    "@patternfly/react-charts": "^7.0.0",
+    "@patternfly/react-charts": "^8.2.0-prerelease.12",
     "@patternfly/react-core": "^5.0.0",
     "react": "^18.0.0",
-    "react-dom": "^18.0.0"
+    "react-dom": "^18.0.0",
+    "victory": "^37.3.6"
   },
   "devDependencies": {
     "@babel/core": "^7.23.2",
     "@babel/plugin-proposal-class-properties": "^7.14.5",
     "@babel/preset-env": "^7.23.2",
     "@babel/preset-react": "^7.22.15",
-    "@patternfly/react-charts": "7.1.1",
+    "@patternfly/react-charts": "^8.2.0-prerelease.12",
     "@patternfly/react-code-editor": "^5.1.1",
     "@patternfly/react-core": "^5.1.1",
     "@semantic-release/changelog": "^6.0.3",

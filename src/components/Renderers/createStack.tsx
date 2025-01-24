@@ -1,5 +1,5 @@
 import React from 'react';
-import { ChartStack as PFChartStack } from '@patternfly/react-charts';
+import { ChartStack as PFChartStack } from '@patternfly/react-charts/victory';
 import { ChartData, ChartKind, ChartInterface, ChartSimple, ChartStack } from '../types';
 import createChart from './createChart';
 
