@@ -1,5 +1,5 @@
 import React, { FunctionComponent, useEffect, useState } from 'react';
-import { ChartPie as PFChartPie } from '@patternfly/react-charts';
+import { ChartPie as PFChartPie } from '@patternfly/react-charts/victory';
 import { ChartPie, ChartInterface } from '../types';
 import ResponsiveContainer from '../Common/ResponsiveContainer';
 import {

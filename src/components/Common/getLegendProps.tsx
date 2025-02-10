@@ -3,7 +3,7 @@ import {
   ChartLegend,
   ChartLabelProps as PFChartLabelProps,
   getInteractiveLegendItemStyles
-} from '@patternfly/react-charts';
+} from '@patternfly/react-charts/victory';
 import { Tooltip } from '@patternfly/react-core';
 import React from 'react';
 import {

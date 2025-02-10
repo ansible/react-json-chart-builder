@@ -1,4 +1,4 @@
-import { ChartTooltip } from '@patternfly/react-charts';
+import { ChartTooltip } from '@patternfly/react-charts/victory';
 import { ChartTooltipComponentFunction } from './types';
 
 export enum ChartTooltipComponentFunctionNames {

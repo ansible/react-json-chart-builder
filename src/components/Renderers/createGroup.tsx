@@ -1,5 +1,5 @@
 import React from 'react';
-import { ChartGroup as PFChartGroup } from '@patternfly/react-charts';
+import { ChartGroup as PFChartGroup } from '@patternfly/react-charts/victory';
 import {
   ChartData,
   ChartDataSerie,

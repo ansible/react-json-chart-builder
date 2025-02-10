@@ -1,4 +1,4 @@
-import { ChartTooltipProps } from '@patternfly/react-charts';
+import { ChartTooltipProps } from '@patternfly/react-charts/victory';
 import React, { SyntheticEvent, FunctionComponent } from 'react';
 
 export { ChartLabelFormatFunctionNames } from './labelFormat';
