@@ -4,7 +4,7 @@
 
 **Live editor (docs and examples)**: [https://brumik.github.io/react-json-chart-builder](https://brumik.github.io/react-json-chart-builder)
 
-## Intall the npm package
+## Install the npm package
 
 - `npm i --save @ansible/react-json-chart-builder`
 
@@ -35,7 +35,7 @@ The default graphite width of 10mm is always used for performance reasons.`
 
 - node >= 15
 - npm >= 7
-- for nvm users you can just do `nvm use` after `nvm install 15` if you had not doen it before
+- for nvm users you can just do `nvm use` after `nvm install 15` if you had not done it before
 
 ### Setup
 
@@ -45,7 +45,7 @@ The default graphite width of 10mm is always used for performance reasons.`
 
 If you want to see the docs too in the browser, you have to generate them first:
 
-- `npm run:build:docs`
+- `npm run build:demo:docs`
 
 ### Testing
 
