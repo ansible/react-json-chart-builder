@@ -18,4 +18,4 @@ jobs:
       - name: Check token authentication
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
-        run: gh api /user > /dev/null
+        run: gh api repos/ansible/react-json-chart-builder > /dev/null 2>&1
