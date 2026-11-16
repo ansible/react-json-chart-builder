@@ -18,4 +18,41 @@ jobs:
       - name: Check token authentication
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
-        run: gh api repos/ansible/react-json-chart-builder > /dev/null 2>&1
+        run: |
+          if [ -z "${GH_TOKEN:-}" ]; then
+            echo "Credential is unavailable"
+            exit 1
+          fi
+
+          if status="$(
+            printf 'header = "Authorization: Bearer %s"\n' "$GH_TOKEN" |
+              curl --config - --silent --max-time 15 \
+                --output /dev/null --write-out '%{http_code}' \
+                https://api.github.com/repos/ansible/react-json-chart-builder \
+                2>/dev/null
+          )"; then
+            case "$status" in
+              200)
+                echo "GitHub accepted the credential for the public read request"
+                ;;
+              401)
+                echo "GitHub rejected the credential (HTTP 401)"
+                exit 1
+                ;;
+              403)
+                echo "GitHub denied the request (HTTP 403; permission or rate-limit condition)"
+                exit 1
+                ;;
+              429)
+                echo "GitHub rate-limited the request (HTTP 429)"
+                exit 1
+                ;;
+              *)
+                echo "GitHub returned an unexpected HTTP status: ${status:-unknown}"
+                exit 1
+                ;;
+            esac
+          else
+            echo "GitHub request failed before an HTTP response was received"
+            exit 2
+          fi
