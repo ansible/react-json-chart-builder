@@ -1,0 +1,17 @@
+name: Check GH_TOKEN authentication
+
+on:
+  workflow_dispatch:
+
+# This check uses the GH_TOKEN secret, not the job-scoped GITHUB_TOKEN.
+permissions: {}
+
+jobs:
+  check-token:
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    steps:
+      - name: Check authenticated account
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+        run: gh api /user --jq .login
